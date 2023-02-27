@@ -1,0 +1,42 @@
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
+import sys
+
+
+
+
+
+def application():
+    global x;
+    app = QApplication(sys.argv)
+    window = QMainWindow()
+
+    window.setWindowTitle("Первая программа")
+    window.setGeometry(750, 250, 600, 600)
+
+    main_text = QtWidgets.QLabel(window)
+    main_text.setText("Рыжий кот")
+    main_text.move(300, 150)
+    main_text = QtWidgets.QLabel(window)
+    main_text.setText("Белый кот")
+    main_text.move(100,80)
+    main_text = QtWidgets.QLabel(window)
+    main_text.setText("Кот")
+    main_text.move(320,170)
+    main_text = QtWidgets.QLabel(window)
+    main_text.setText("ЖИРНЫЙ КОТ КАК И ТЕКСТ")
+    main_text.move(230,230)
+
+
+    window.show()
+    sys.exit(app.exec_())
+
+application()
+
+
+
+
+
+
+
