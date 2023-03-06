@@ -1,0 +1,65 @@
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
+import sys
+
+
+x = 0
+
+
+
+
+
+def application():
+   global x
+   app = QApplication(sys.argv)
+   window = QMainWindow()
+
+   window.setWindowTitle("Первая программа")
+   window.setGeometry(750, 250, 600, 600)
+
+   main_text = QtWidgets.QLabel(window)
+   main_text.setText("Бобрик")
+   main_text.move(290, 250)
+
+
+
+
+
+   def go1():
+       global x
+       print('Ты упал в яму с дипами')
+       main_text.setText("Бобрик в яме с дипами задыхается")
+       main_text.move(290, 160)
+
+   def go2():
+       global x
+       print('Ты нашёл пси-муху и убил всех хашиков')
+       main_text.setText("Бобрик с пси-мухой")
+       main_text.move(81,360)
+
+   def go3():
+        global x
+        print('ничего')
+        main_text.setText("ничего")
+        main_text.move(123, 567)
+
+   btn = QtWidgets.QPushButton(window)
+   btn.move(265, 230)
+   btn.setText('1 дверь')
+   btn.clicked.connect(go1)
+
+   btn = QtWidgets.QPushButton(window)
+   btn.move(170, 250)
+   btn.setText('2 дверь')
+   btn.clicked.connect(go2)
+
+   btn = QtWidgets.QPushButton(window)
+   btn.move(360, 250)
+   btn.setText('3 дверь')
+   btn.clicked.connect(go3)
+
+   window.show()
+   sys.exit(app.exec_())
+
+application()
