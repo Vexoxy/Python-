@@ -1,0 +1,114 @@
+import pygame
+
+
+pygame.init()
+win = pygame.display.set_mode((600,600))
+
+pygame.display.set_caption("Игра на триста")
+flag = 3
+x = 100
+y = 50
+x1 = 200
+y1 = 100
+w = 70
+h = 45
+speed = 5
+speed2 = 5
+speed3 = 5
+speed4 = 5
+i =0
+pygame.mixer.music.load('mus/sd.mp3')
+pygame.mixer.music.play()
+pygame.mixer.music.set_volume(0)
+
+
+bg = pygame.image.load('image/bg.png')
+duck = pygame.image.load('duck/duck.png')
+
+cat = [
+    pygame.image.load('image/pixil-frame-0 (7).png'),
+    pygame.image.load('image/pixil-frame-0 (9).png'),
+    pygame.image.load('image/pixil-frame-0 (10).png'),
+    pygame.image.load('image/pixil-frame-0 (11).png'),
+    pygame.image.load('image/pixil-frame-0 (12).png'),
+]
+
+ty = [
+    pygame.image.load('duck/left/1.png'),
+    pygame.image.load('duck/left/pixil-frame-0 (16).png'),
+    pygame.image.load('duck/left/pixil-frame-0 (17).png'),
+    pygame.image.load('duck/left/pixil-frame-0 (18).png'),
+    pygame.image.load('duck/left/pixil-frame-0 (19).png'),
+]
+xy = [
+    pygame.image.load('duck/rigth/2.png'),
+    pygame.image.load('duck/rigth/3.png'),
+    pygame.image.load('duck/rigth/4.png'),
+    pygame.image.load('duck/rigth/5.png'),
+    pygame.image.load('duck/rigth/6.png'),
+]
+dy = [
+    pygame.image.load('duck/dontmove/7.png'),
+    pygame.image.load('duck/dontmove/8.png'),
+    pygame.image.load('duck/dontmove/9.png'),
+    pygame.image.load('duck/dontmove/10.png'),
+    pygame.image.load('duck/dontmove/11.png'),
+]
+
+
+
+def drawWindow():
+    global i
+    global flag
+    if i < 4:
+        i += 1
+    else:
+        i = 0
+    win.blit(bg, (0,0))
+    if flag == 1:
+        win.blit(ty[i], (x, y))
+    elif flag == 2:
+        win.blit(xy[i], (x, y))
+    elif flag == 3:
+        win.blit(dy[i], (x, y))
+    win.blit(duck, (x1,y1,w, h ))
+    pygame.display.update()
+
+run = True
+while run:
+    pygame.time.delay(50)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_DOWN] and y<600-h:
+        y += speed
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP] and y>0:
+        y -= speed4
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_RIGHT] and x>0:
+        x += speed2
+        flag = 1
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and x<600-w:
+        x -= speed3
+        flag = 2
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_s] and y1<600-h:
+        y1 += speed
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_w] and y1>0:
+        y1 -= speed4
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_d] and x1>0:
+        x1 += speed2
+        keys = pygame.key.get_pressed()
+    if keys[pygame.K_a] and x1<600- w:
+        x1 -= speed3
+
+    drawWindow()
+
+pygame.quit()
